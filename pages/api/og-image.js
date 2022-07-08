@@ -28,26 +28,23 @@ export default withOGImage({
                                 </div>
                                 <div className='lhs position-relative'>
                                     <div className='main'>
+                                        {data.season && data.started_airing && (
+                                            <h2 className="season_episodes">
+                                                {JSON.parse(data.season).season} {JSON.parse(data.season).year}
+                                                <span>{JSON.parse(data.started_airing).episodes_number} Odcinków</span>
+                                            </h2>
+                                        )}
                                         <h1 className='title first-h1'>{data.name_en}</h1>
-                                        <h1 className="fw-lighter second-h1">{data.name}</h1>
-                                        <div className="m-3">
-                                            <h3>Gatunek</h3>
-                                            <div>
-                                                {JSON.parse(data.genre).map((i, index) => (
-                                                    <span className="fighter_profile_genre___3oB5" key={index}>{i.name}</span>
-                                                ))}
-                                            </div>
-                                        </div>
                                         <div className="m-2">
-                                            <h3>Nowe odcinki wychodzą w</h3>
-                                            <p className="fw-lighter"><DropDate data={data.broadcast}/></p>
+                                            <h3 className="gold">Nowe odcinki wychodzą w</h3>
+                                            <p><DropDate data={data.broadcast}/></p>
                                         </div>
                                     </div>
-                                    <div className='metadata'>
-                                        <div className="author-image"></div>
-                                        <div className='metadata-rhs'>
-                                            <div className='author'>docchi.pl</div>
-                                            <div className='detail'>@docchifun</div>
+                                    <div className="m-3">
+                                        <div>
+                                            {JSON.parse(data.genre).map((i, index) => (
+                                                <h2 className="fighter_profile_genre___3oB5" key={index}>{i.name}</h2>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -154,6 +151,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+    backdrop-filter: brightness(50%);
     overflow: hidden;
 }
 .fighter_profile_anis_cover__BIr4U {
@@ -183,7 +181,7 @@ body {
     font-size: 2.25em;
 }
 .m-3{
-    width: 20rem;
+
 }
 .m-2{
     width: 20rem;
@@ -193,15 +191,29 @@ body {
 }
 .fighter_profile_genre___3oB5 {
     display: inline-block;
-    font-size: 12px;
     line-height: 1.1em;
-    padding: 4px 8px;
-    border: 1px solid hsla(0,0%,100%,.4);
+    padding: .25em .50em .25em;
+    background-color: rgba(249, 249, 249, 0.1);
+    color: #fff;
     border-radius: 20px;
     margin: 0 2px 5px 0;
     transition: all .2s ease-in-out!important;
 }
 .text-center{
     text-align: center;
+}
+.season_episodes{
+    text-transform: capitalize;
+    font-weight: normal;
+}
+.season_episodes span::before{
+    content: "•";
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+.gold{
+    color: #ffc107;
 }
 `
